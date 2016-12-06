@@ -3,24 +3,48 @@ package com.sandbox.springmvc.dao.impl;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+/**
+ * The Class AbstractDao.
+ */
 public abstract class AbstractDao {
 
-	@PersistenceContext
-	private EntityManager manager;
+  /** The manager. */
+  @PersistenceContext
+  private EntityManager manager;
 
-	protected EntityManager getEntityManager() {
-		return manager;
-	}
+  /**
+   * Gets the entity manager.
+   *
+   * @return the entity manager
+   */
+  protected EntityManager getEntityManager() {
+    return manager;
+  }
 
-	public void persist(Object entity) {
-		getEntityManager().persist(entity);
-	}
+  /**
+   * Persist.
+   *
+   * @param entity the entity
+   */
+  public void persist(Object entity) {
+    getEntityManager().persist(entity);
+  }
 
-	public void delete(Object entity) {
-		getEntityManager().remove(entity);
-	}
+  /**
+   * Delete.
+   *
+   * @param entity the entity
+   */
+  public void delete(Object entity) {
+    getEntityManager().remove(entity);
+  }
 
-	public void update(Object entity) {
-		getEntityManager().merge(entity);
-	}
+  /**
+   * Update.
+   *
+   * @param entity the entity
+   */
+  public void update(Object entity) {
+    getEntityManager().merge(entity);
+  }
 }

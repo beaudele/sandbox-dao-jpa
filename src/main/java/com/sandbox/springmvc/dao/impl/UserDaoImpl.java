@@ -1,66 +1,103 @@
-/**
- * 
- */
 package com.sandbox.springmvc.dao.impl;
-
-import java.util.List;
-
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.sandbox.springmvc.dao.UserDao;
 import com.sandbox.springmvc.model.RegisteredUser;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 /**
- * @author Arnaud
- *
+ * The Class UserDaoImpl.
  */
 @Repository("userDao")
 @Transactional
 public class UserDaoImpl extends AbstractDao implements UserDao {
 
-	@Override
-	public RegisteredUser findById(Long id) {
-		return getEntityManager().find(RegisteredUser.class, id);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.sandbox.springmvc.dao.UserDao#findById(java.lang.Long)
+   */
+  @Override
+  public RegisteredUser findById(Long id) {
+    return getEntityManager().find(RegisteredUser.class, id);
+  }
 
-	@Override
-	public RegisteredUser findByName(String name) {
-		return getEntityManager().find(RegisteredUser.class, name);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.sandbox.springmvc.dao.UserDao#findByName(java.lang.String)
+   */
+  @Override
+  public RegisteredUser findByName(String name) {
+    return getEntityManager().find(RegisteredUser.class, name);
+  }
 
-	@Override
-	public void saveUser(RegisteredUser user) {
-		persist(user);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.sandbox.springmvc.dao.UserDao#saveUser(com.sandbox.springmvc.model.RegisteredUser)
+   */
+  @Override
+  public void saveUser(RegisteredUser user) {
+    persist(user);
+  }
 
-	@Override
-	public void updateUser(RegisteredUser user) {
-		update(user);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.sandbox.springmvc.dao.UserDao#updateUser(com.sandbox.springmvc.model.RegisteredUser)
+   */
+  @Override
+  public void updateUser(RegisteredUser user) {
+    update(user);
+  }
 
-	@Override
-	public void deleteUserById(Long id) {
-		javax.persistence.Query query = getEntityManager()
-				.createNativeQuery("delete from RegisteredUser where id =" + id);
-		query.executeUpdate();
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.sandbox.springmvc.dao.UserDao#deleteUserById(java.lang.Long)
+   */
+  @Override
+  public void deleteUserById(Long id) {
+    javax.persistence.Query query =
+        getEntityManager().createNativeQuery("delete from RegisteredUser where id =" + id);
+    query.executeUpdate();
+  }
 
-	@Override
-	public List<RegisteredUser> findAllUsers() {
-		return getEntityManager().createQuery("select a from RegisteredUser a", RegisteredUser.class).getResultList();
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.sandbox.springmvc.dao.UserDao#findAllUsers()
+   */
+  @Override
+  public List<RegisteredUser> findAllUsers() {
+    return getEntityManager().createQuery("select a from RegisteredUser a", RegisteredUser.class)
+        .getResultList();
+  }
 
-	@Override
-	public void deleteAllUsers() {
-		javax.persistence.Query query = getEntityManager().createNativeQuery("delete from RegisteredUser");
-		query.executeUpdate();
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.sandbox.springmvc.dao.UserDao#deleteAllUsers()
+   */
+  @Override
+  public void deleteAllUsers() {
+    javax.persistence.Query query =
+        getEntityManager().createNativeQuery("delete from RegisteredUser");
+    query.executeUpdate();
+  }
 
-	@Override
-	public boolean isUserExist(RegisteredUser user) {
-		// TODO Auto-generated method stub
-		return user.getId() != null && findById(user.getId()) != null;
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.sandbox.springmvc.dao.UserDao#isUserExist(com.sandbox.springmvc.model.RegisteredUser)
+   */
+  @Override
+  public boolean isUserExist(RegisteredUser user) {
+    return user.getId() != null && findById(user.getId()) != null;
+  }
 
 }
