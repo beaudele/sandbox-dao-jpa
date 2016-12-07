@@ -28,16 +28,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
   /*
    * (non-Javadoc)
    * 
-   * @see com.sandbox.springmvc.dao.UserDao#findByName(java.lang.String)
-   */
-  @Override
-  public RegisteredUser findByName(String name) {
-    return getEntityManager().find(RegisteredUser.class, name);
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
    * @see com.sandbox.springmvc.dao.UserDao#saveUser(com.sandbox.springmvc.model.RegisteredUser)
    */
   @Override
